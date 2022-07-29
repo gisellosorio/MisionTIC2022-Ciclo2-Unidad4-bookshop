@@ -1,6 +1,9 @@
 package co.edu.utp.misiontic2022.c2.cdiaz.bookshop;
 
+import java.sql.Statement;
 import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +17,8 @@ public class DBManager implements AutoCloseable {
 
     private void connect() throws SQLException {
         // TODO: program this method
+        String url="jdbc:sqlite:C:/Users/Gisell/OneDrive/Escritorio/PROYECTOS 2022/Mision TIC/Ciclo 2/Programación básica/Semana 6/Clase 14/Bookshop.db";
+        connection=DriverManager.getConnection(url);
     }
 
     /**
@@ -60,7 +65,37 @@ public class DBManager implements AutoCloseable {
      */
     public Book searchBook(String isbn) throws SQLException {
         // TODO: program this method
-        return null;
+        Book respuesta=null;
+        Statement s=null;
+        ResultSet rs=null;
+        try{
+            s=connection.createStatement();
+            rs=s.executeQuery("Select * From Book Where isbn= '"+isbn+"'");
+            if(rs.next()){
+                respuesta=new Book();
+                respuesta.setId(rs.getInt("id"));
+                respuesta.setTitle(rs.getString("title"));
+                respuesta.setIsbn(rs.getString("isbn"));
+                respuesta.setYear(rs.getInt("year"));
+
+            }
+        }
+        finally { 
+            try { 
+            if (rs != null){
+            rs.close(); 
+            }
+            if (s != null) {
+            s.close(); 
+            }
+            if (connection != null){
+            connection.close(); 
+            }
+            } catch (SQLException e) {
+            }
+            } 
+            
+        return respuesta;
     }
 
     /**
