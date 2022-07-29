@@ -61,7 +61,7 @@ public class BookShop {
         System.out.println(" Listado de libros");
         System.out.println("==========================================");
         try (DBManager manager = new DBManager()) {
-            List books = manager.listBooks();
+            List<Book> books = manager.listBooks();
             books.forEach(System.out::println);
         } catch (SQLException ex) {
             ex.printStackTrace();
