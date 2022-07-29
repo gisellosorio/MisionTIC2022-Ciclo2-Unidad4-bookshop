@@ -16,7 +16,8 @@ public class DBManager implements AutoCloseable {
     }
 
     private void connect() throws SQLException {
-        // TODO: program this method
+        // TO DO: program this method
+        //Class.forName("org.sqlite.JDBC"); 
         String url="jdbc:sqlite:C:/Users/Gisell/OneDrive/Escritorio/PROYECTOS 2022/Mision TIC/Ciclo 2/Programación básica/Semana 6/Clase 14/Bookshop.db";
         connection=DriverManager.getConnection(url);
     }
@@ -52,7 +53,7 @@ public class DBManager implements AutoCloseable {
      *         exist in the database.
      */
     public int getStock(int bookId) throws SQLException {
-        // TODO: program this method
+        // TO DO: program this method
         return 0;
     }
 
@@ -64,7 +65,7 @@ public class DBManager implements AutoCloseable {
      * @throws SQLException If somthing fails with the DB.
      */
     public Book searchBook(String isbn) throws SQLException {
-        // TODO: program this method
+        // TO DO: program this method
         Book respuesta=null;
         Statement s=null;
         ResultSet rs=null;
@@ -121,7 +122,7 @@ public class DBManager implements AutoCloseable {
      * @throws SQLException If something fails with the DB.
      */
     public boolean sellBook(int book, int units) throws SQLException {
-        // TODO: program this method
+        // TO DO: program this method
         return false;
     }
 
@@ -132,7 +133,7 @@ public class DBManager implements AutoCloseable {
      * @throws SQLException If something fails with the DB.
      */
     public List<Book> listBooks() throws SQLException {
-        // TODO: program this method
+        // TO DO: program this method
         return new ArrayList<Book>();
     }
 }
